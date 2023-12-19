@@ -17,7 +17,7 @@ const Nav = () => {
             {/* Desktop Navigation */}
             <ul
                 className={cn(
-                    'hidden relative h-12 rounded-b-[var(--radius)] bg-white',
+                    'hidden relative h-12 rounded-b-[var(--radius)] bg-white px-2',
                     'xs:m-2',
                     'md:flex md:m-3',
                     'before:absolute before:-right-5 before:top-0 before:w-5 before:h-5 before:rounded-tl-[10px] before:shadow-[-5px_-5px_0_0_#fff]',
@@ -25,7 +25,7 @@ const Nav = () => {
                 )}
             >
                 {navItems.map((item) => (
-                    <li key={item.id} className="cursor-pointer px-4 py-2">
+                    <li key={item.id} className="cursor-pointer px-4 py-2 flex justify-center items-center">
                         {item.text}
                     </li>
                 ))}
