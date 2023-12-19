@@ -31,7 +31,7 @@ const Nav = () => {
                 ))}
             </ul>
 
-            {/* Mobile Navigation Icon */}
+            {/* Mobile Burger Icon */}
             <div
                 onClick={handleNav}
                 className="text-black rounded-bl-[var(--radius)] h-12 w-12 flex items-center justify-center bg-background md:hidden"
@@ -39,7 +39,7 @@ const Nav = () => {
                 <p>ICON</p>
             </div>
 
-            {/* Mobile Navigation Menu */}
+            {/* Mobile Navigation Drawer */}
             <ul
                 className={cn(
                     'w-[60%] duration-500 fixed top-0 bottom-0',
