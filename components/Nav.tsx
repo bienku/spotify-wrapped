@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
+import BurgerIcon from '@/components/BurgerIcon';
+
 const navItems = [
     { id: 1, text: 'Music' },
     { id: 2, text: 'Artists' },
@@ -33,10 +35,14 @@ const Nav = () => {
 
             {/* Mobile Burger Icon */}
             <div
-                onClick={handleNav}
-                className="text-black rounded-bl-[var(--radius)] h-12 w-12 flex items-center justify-center bg-background md:hidden"
+                className={cn(
+                    'relative text-black rounded-bl-[var(--radius)] h-12 w-12 flex items-center justify-center bg-background',
+                    'md:hidden',
+                    'before:absolute before:right-12 before:top-0 before:w-5 before:h-5 before:rounded-tr-[10px] before:shadow-[5px_-5px_0_0_#fff]',
+                    'after:absolute after:right-0 after:top-12 after:w-5 after:h-5 after:rounded-tr-[10px] after:shadow-[5px_-5px_0_0_#fff]',
+                )}
             >
-                <p>ICON</p>
+                <BurgerIcon isDrawerOpen={isDrawerOpen} handleNav={handleNav} />
             </div>
 
             {/* Mobile Navigation Drawer */}
