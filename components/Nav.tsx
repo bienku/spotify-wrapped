@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { signOut } from 'next-auth/react';
 
 import BurgerButton from '@/components/BurgerButton';
 import { Button } from '@/components/ui/button';
@@ -35,6 +36,11 @@ const Nav = () => {
                         </Button>
                     </li>
                 ))}
+                <li>
+                    <Button variant="ghost" onClick={() => signOut()}>
+                        Sign out
+                    </Button>
+                </li>
             </ul>
 
             {/* Mobile Burger Icon */}
@@ -67,6 +73,11 @@ const Nav = () => {
                         </Button>
                     </li>
                 ))}
+                <li>
+                    <Button variant="ghost" className="text-white w-full justify-start" onClick={() => signOut()}>
+                        Sign out
+                    </Button>
+                </li>
             </ul>
         </nav>
     );
