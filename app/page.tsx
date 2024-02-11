@@ -1,7 +1,15 @@
+'use client';
+
+import useFetch from '@/hooks/useFetch';
 import Nav from '@/components/Nav';
+import ArtistsList from '@/components/ArtistsList';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function Home() {
+    const artistsShort = useFetch('me/top/artists?time_range=short_term&limit=50');
+    const artistsMedium = useFetch('me/top/artists?time_range=medium_term&limit=50');
+    const artistsLong = useFetch('me/top/artists?time_range=long_term&limit=50');
+
     return (
         <div className="max-h-screen h-screen xs:p-2 md:p-3 overflow-hidden">
             <div className="w-full h-1/5 bg-cover bg-no-repeat bg-[url('/hero-mobile.jpg')] sm:bg-[url('/hero-desktop.jpg')] xs:max-w-7xl xs:mx-auto xs:rounded-[var(--radius)]">
@@ -22,9 +30,17 @@ export default function Home() {
                         </TabsTrigger>
                     </TabsList>
 
-                    <TabsContent value="month-1"></TabsContent>
-                    <TabsContent value="month-6"></TabsContent>
-                    <TabsContent value="all-time"></TabsContent>
+                    <TabsContent value="month-1" className="h-[calc(100%-60px)] overflow-y-auto border rounded-md">
+                        <ArtistsList artists={artistsShort} />
+                    </TabsContent>
+
+                    <TabsContent value="month-6" className="h-[calc(100%-60px)] overflow-y-auto border rounded-md">
+                        <ArtistsList artists={artistsMedium} />
+                    </TabsContent>
+
+                    <TabsContent value="all-time" className="h-[calc(100%-60px)] overflow-y-auto border rounded-md">
+                        <ArtistsList artists={artistsLong} />
+                    </TabsContent>
                 </Tabs>
             </main>
         </div>
