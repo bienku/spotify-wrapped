@@ -58,7 +58,7 @@ const Nav = () => {
             {/* Mobile Navigation Drawer */}
             <ul
                 className={cn(
-                    'w-[60%] duration-500 fixed top-0 bottom-0 p-2',
+                    'w-[60%] duration-500 fixed top-0 bottom-0 p-2 z-50',
                     'md:hidden',
                     { 'left-0 h-full bg-[#000300] ease-in-out': isDrawerOpen },
                     { 'left-[-100%] ease-in-out': !isDrawerOpen },
