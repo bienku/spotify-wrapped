@@ -1,6 +1,6 @@
-import React from 'react';
 import { ScrollArea } from '@radix-ui/react-scroll-area';
 
+import ArtistItem from '@/components/ArtistItem';
 import { Separator } from '@/components/ui/separator';
 
 interface ArtistsList {
@@ -13,10 +13,10 @@ const ArtistsList: React.FC<ArtistsList> = ({ artists }) => {
             <ul className="p-4">
                 {artists
                     ? artists.map((artist, index) => (
-                          <React.Fragment key={index}>
-                              <p>{artist.name}</p>
+                          <li key={index}>
+                              <ArtistItem artist={artist} index={index + 1} />
                               {index !== 49 && <Separator />}
-                          </React.Fragment>
+                          </li>
                       ))
                     : 'Skeleton loading will be added here soon!'}
             </ul>
