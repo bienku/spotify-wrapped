@@ -5,13 +5,14 @@ import { Separator } from '@/components/ui/separator';
 
 interface ArtistsList {
     artists: any[];
+    loading: boolean;
 }
 
-const ArtistsList: React.FC<ArtistsList> = ({ artists }) => {
+const ArtistsList: React.FC<ArtistsList> = ({ artists, loading }) => {
     return (
         <ScrollArea className="h-full w-full">
             <ul className="p-4">
-                {artists
+                {artists && !loading
                     ? artists.map((artist, index) => (
                           <li key={index}>
                               <ArtistItem artist={artist} index={index + 1} />

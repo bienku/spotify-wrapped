@@ -6,9 +6,9 @@ import ArtistsList from '@/components/ArtistsList';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function Home() {
-    const artistsShort = useFetch('me/top/artists?time_range=short_term&limit=50');
-    const artistsMedium = useFetch('me/top/artists?time_range=medium_term&limit=50');
-    const artistsLong = useFetch('me/top/artists?time_range=long_term&limit=50');
+    const { data: artistsShort, loading: loadingShort } = useFetch('me/top/artists?time_range=short_term&limit=50');
+    const { data: artistsMedium, loading: loadingMedium } = useFetch('me/top/artists?time_range=medium_term&limit=50');
+    const { data: artistsLong, loading: loadingLong } = useFetch('me/top/artists?time_range=long_term&limit=50');
 
     return (
         <div className="max-h-screen h-screen xs:p-2 md:p-3 overflow-hidden">
@@ -31,15 +31,15 @@ export default function Home() {
                     </TabsList>
 
                     <TabsContent value="month-1" className="h-[calc(100%-60px)] overflow-y-auto border rounded-md">
-                        <ArtistsList artists={artistsShort} />
+                        <ArtistsList artists={artistsShort} loading={loadingShort} />
                     </TabsContent>
 
                     <TabsContent value="month-6" className="h-[calc(100%-60px)] overflow-y-auto border rounded-md">
-                        <ArtistsList artists={artistsMedium} />
+                        <ArtistsList artists={artistsMedium} loading={loadingMedium} />
                     </TabsContent>
 
                     <TabsContent value="all-time" className="h-[calc(100%-60px)] overflow-y-auto border rounded-md">
-                        <ArtistsList artists={artistsLong} />
+                        <ArtistsList artists={artistsLong} loading={loadingLong} />
                     </TabsContent>
                 </Tabs>
             </main>
