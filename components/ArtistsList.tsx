@@ -2,6 +2,8 @@ import { ScrollArea } from '@radix-ui/react-scroll-area';
 
 import ArtistItem from '@/components/ArtistItem';
 import { Separator } from '@/components/ui/separator';
+import ArtistItemSkeleton from '@/components/ArtistItemSkeleton';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface ArtistsList {
     artists: any[];
@@ -19,7 +21,12 @@ const ArtistsList: React.FC<ArtistsList> = ({ artists, loading }) => {
                               {index !== 49 && <Separator />}
                           </li>
                       ))
-                    : 'Skeleton loading will be added here soon!'}
+                    : Array.from({ length: 5 }, (_, index) => (
+                          <li key={index}>
+                              <ArtistItemSkeleton key={index} />
+                              {index !== 4 && <Skeleton className="h-[1px] w-full shrink-0" />}
+                          </li>
+                      ))}
             </ul>
         </ScrollArea>
     );
