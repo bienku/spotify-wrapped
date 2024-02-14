@@ -17,7 +17,7 @@ export default function Home() {
             </div>
 
             <main className="w-full h-4/5 flex justify-center mt-4">
-                <Tabs defaultValue="month-1" className="w-5/6 sm:w-2/3 h-full max-w-[975px]">
+                <Tabs defaultValue="short_term" className="w-5/6 sm:w-2/3 h-full max-w-[975px]">
                     <TabsList className="grid w-full h-max grid-cols-3">
                         <TabsTrigger value="month-1" className="text-xs sm:text-sm">
                             last month
@@ -30,15 +30,15 @@ export default function Home() {
                         </TabsTrigger>
                     </TabsList>
 
-                    <TabsContent value="month-1" className="h-[calc(100%-60px)] overflow-y-auto border rounded-md">
+                    <TabsContent value="short_term" className="h-[calc(100%-60px)] overflow-y-auto border rounded-md">
                         <ArtistsList artists={artistsShort} loading={loadingShort} />
                     </TabsContent>
 
-                    <TabsContent value="month-6" className="h-[calc(100%-60px)] overflow-y-auto border rounded-md">
+                    <TabsContent value="medium_term" className="h-[calc(100%-60px)] overflow-y-auto border rounded-md">
                         <ArtistsList artists={artistsMedium} loading={loadingMedium} />
                     </TabsContent>
 
-                    <TabsContent value="all-time" className="h-[calc(100%-60px)] overflow-y-auto border rounded-md">
+                    <TabsContent value="long_term" className="h-[calc(100%-60px)] overflow-y-auto border rounded-md">
                         <ArtistsList artists={artistsLong} loading={loadingLong} />
                     </TabsContent>
                 </Tabs>
