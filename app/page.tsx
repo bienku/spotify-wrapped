@@ -6,9 +6,9 @@ import ArtistsList from '@/components/ArtistsList';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function Home() {
-    const { data: artistsShort, loading: loadingShort } = useFetch('me/top/artists?time_range=short_term&limit=50');
-    const { data: artistsMedium, loading: loadingMedium } = useFetch('me/top/artists?time_range=medium_term&limit=50');
-    const { data: artistsLong, loading: loadingLong } = useFetch('me/top/artists?time_range=long_term&limit=50');
+    const { data: artistsShort, loading: loadingShort } = useFetch('artists', 'short_term');
+    const { data: artistsMedium, loading: loadingMedium } = useFetch('artists', 'medium_term');
+    const { data: artistsLong, loading: loadingLong } = useFetch('artists', 'long_term');
 
     return (
         <div className="max-h-screen h-screen xs:p-2 md:p-3 overflow-hidden">

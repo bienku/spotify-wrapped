@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 
-const useFetch = (endpoint: string) => {
+type FetchType = 'artists' | 'tracks';
+type FetchPeriod = 'short_term' | 'medium_term' | 'long_term';
+
+const useFetch = (type: FetchType, period: FetchPeriod, limit = 50) => {
     const [data, setData] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<any | null>(null);
@@ -18,7 +21,7 @@ const useFetch = (endpoint: string) => {
             }
 
             try {
-                const response = await fetch(`https://api.spotify.com/v1/${endpoint}`, {
+                const response = await fetch(`https://api.spotify.com/v1/me/top/${type}?time_range=${period}&limit=${limit}`, {
                     headers: {
                         Authorization: `Bearer ${session.accessToken}`,
                     },
@@ -38,7 +41,7 @@ const useFetch = (endpoint: string) => {
         };
 
         fetchData();
-    }, [session, endpoint]);
+    }, [session, type, period, limit]);
 
     return { data, loading, error };
 };
