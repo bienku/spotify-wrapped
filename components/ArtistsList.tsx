@@ -1,16 +1,20 @@
+'use client';
+
 import { ScrollArea } from '@radix-ui/react-scroll-area';
 
+import useFetch from '@/hooks/useFetch';
 import ArtistItem from '@/components/ArtistItem';
 import { Separator } from '@/components/ui/separator';
 import ArtistItemSkeleton from '@/components/ArtistItemSkeleton';
 import { Skeleton } from '@/components/ui/skeleton';
 
 interface ArtistsList {
-    artists: any[];
-    loading: boolean;
+    term: 'short_term' | 'medium_term' | 'long_term';
 }
 
-const ArtistsList: React.FC<ArtistsList> = ({ artists, loading }) => {
+const ArtistsList: React.FC<ArtistsList> = ({ term }) => {
+    const { data: artists, loading } = useFetch('artists', term);
+
     return (
         <ScrollArea className="h-full w-full">
             <ul className="p-4">
