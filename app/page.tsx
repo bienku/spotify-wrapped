@@ -1,3 +1,4 @@
+import { ArtistsProvider } from '@/hooks/useArtists';
 import Nav from '@/components/Nav';
 import ArtistsList from '@/components/ArtistsList';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -21,21 +22,27 @@ export default function Home() {
             </div>
 
             <main className="w-full h-4/5 flex justify-center mt-4">
-                <Tabs defaultValue="short_term" className="w-5/6 sm:w-2/3 h-full max-w-[975px]">
-                    <TabsList className="grid w-full h-max grid-cols-3">
-                        {TABS.map(({ term, label }) => (
-                            <TabsTrigger key={term} value={term} className="text-xs sm:text-sm">
-                                {label}
-                            </TabsTrigger>
-                        ))}
-                    </TabsList>
+                <ArtistsProvider>
+                    <Tabs defaultValue="short_term" className="w-5/6 sm:w-2/3 h-full max-w-[975px]">
+                        <TabsList className="grid w-full h-max grid-cols-3">
+                            {TABS.map(({ term, label }) => (
+                                <TabsTrigger key={term} value={term} className="text-xs sm:text-sm">
+                                    {label}
+                                </TabsTrigger>
+                            ))}
+                        </TabsList>
 
-                    {TABS.map(({ term }) => (
-                        <TabsContent key={term} value={term} className="h-[calc(100%-60px)] overflow-y-auto border rounded-md">
-                            <ArtistsList term={term} />
-                        </TabsContent>
-                    ))}
-                </Tabs>
+                        {TABS.map(({ term }) => (
+                            <TabsContent
+                                key={term}
+                                value={term}
+                                className="h-[calc(100%-60px)] overflow-y-auto border rounded-md"
+                            >
+                                <ArtistsList term={term} />
+                            </TabsContent>
+                        ))}
+                    </Tabs>
+                </ArtistsProvider>
             </main>
         </div>
     );

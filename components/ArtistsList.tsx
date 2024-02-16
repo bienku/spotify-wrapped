@@ -2,7 +2,7 @@
 
 import { ScrollArea } from '@radix-ui/react-scroll-area';
 
-import useFetch from '@/hooks/useFetch';
+import { useArtists } from '@/hooks/useArtists';
 import ArtistItem from '@/components/ArtistItem';
 import { Separator } from '@/components/ui/separator';
 import ArtistItemSkeleton from '@/components/ArtistItemSkeleton';
@@ -13,13 +13,15 @@ interface ArtistsList {
 }
 
 const ArtistsList: React.FC<ArtistsList> = ({ term }) => {
-    const { data: artists, loading } = useFetch('artists', term);
+    const { artists, fetchArtistsByTerm } = useArtists();
+
+    if (artists[term].length == 0) fetchArtistsByTerm(term);
 
     return (
         <ScrollArea className="h-full w-full">
             <ul className="p-4">
-                {artists && !loading
-                    ? artists.map((artist, index) => (
+                {artists[term]
+                    ? artists[term].map((artist, index) => (
                           <li key={index}>
                               <ArtistItem artist={artist} index={index + 1} />
                               {index !== 49 && <Separator />}
