@@ -9,7 +9,7 @@ import ArtistItemSkeleton from '@/components/ArtistItemSkeleton';
 import { Skeleton } from '@/components/ui/skeleton';
 
 interface ArtistsList {
-    term: 'short_term' | 'medium_term' | 'long_term';
+    term: Term;
 }
 
 const ArtistsList: React.FC<ArtistsList> = ({ term }) => {

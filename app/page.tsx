@@ -4,7 +4,7 @@ import ArtistsList from '@/components/ArtistsList';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 interface Tab {
-    term: 'short_term' | 'medium_term' | 'long_term';
+    term: Term;
     label: string;
 }
 

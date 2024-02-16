@@ -3,9 +3,6 @@
 import { useState, createContext, useContext } from 'react';
 import { useSession } from 'next-auth/react';
 
-type Type = 'artists' | 'tracks';
-type Term = 'short_term' | 'medium_term' | 'long_term';
-
 interface Artists {
     short_term: any[];
     medium_term: any[];
