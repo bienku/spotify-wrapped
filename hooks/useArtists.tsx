@@ -1,32 +1,50 @@
 'use client';
 
-import { useState, createContext, useContext } from 'react';
+import { useState, useEffect, createContext, useContext } from 'react';
 import { useSession } from 'next-auth/react';
 
+interface ArtistData {
+    data: any[];
+    loading: boolean;
+    error: string | null;
+}
+
 interface Artists {
-    short_term: any[];
-    medium_term: any[];
-    long_term: any[];
+    short_term: ArtistData;
+    medium_term: ArtistData;
+    long_term: ArtistData;
 }
 
 interface ArtistsContext {
     artists: Artists;
-    fetchArtistsByTerm: (term: Term) => Promise<void>;
+    fetchArtistsByTerm: (newTerm: Term) => void;
 }
+
+const initialState: ArtistData = { data: [], loading: false, error: null };
 
 const ArtistsContext = createContext<ArtistsContext | undefined>(undefined);
 
 export const ArtistsProvider = ({ children }: { children: React.ReactNode }) => {
     const { data: session } = useSession();
+    const [term, setTerm] = useState<Term>('short_term');
     const [artists, setArtists] = useState<Artists>({
-        short_term: [],
-        medium_term: [],
-        long_term: [],
+        short_term: initialState,
+        medium_term: initialState,
+        long_term: initialState,
     });
 
+    useEffect(() => {
+        fetchArtists('artists', term);
+    }, [session, term]);
+
+    const fetchArtistsByTerm = (newTerm: Term) => setTerm(newTerm);
+
     const fetchArtists = async (type: Type, term: Term, limit = 50) => {
+        setArtists((prev) => ({ ...prev, [term]: { ...prev[term], loading: true } }));
+
         if (!session || !session.accessToken) {
-            console.error('Session or access token is missing');
+            const error = 'Session or access token is missing';
+            setArtists((prev) => ({ ...prev, [term]: { ...prev[term], loading: false, error } }));
             return;
         }
 
@@ -42,13 +60,12 @@ export const ArtistsProvider = ({ children }: { children: React.ReactNode }) => 
             }
 
             const data = await response.json();
-            setArtists((prev) => ({ ...prev, [term]: data.items }));
-        } catch (err) {
-            console.error(err);
+            setArtists((prev) => ({ ...prev, [term]: { data: data.items, loading: false, error: null } }));
+        } catch (error) {
+            console.error(error);
+            setArtists((prev) => ({ ...prev, [term]: { ...prev[term], loading: false, error } }));
         }
     };
-
-    const fetchArtistsByTerm = async (term: Term) => fetchArtists('artists', term);
 
     return <ArtistsContext.Provider value={{ artists, fetchArtistsByTerm }}>{children}</ArtistsContext.Provider>;
 };

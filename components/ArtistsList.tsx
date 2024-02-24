@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { ScrollArea } from '@radix-ui/react-scroll-area';
 
 import { useArtists } from '@/hooks/useArtists';
@@ -15,13 +16,17 @@ interface ArtistsList {
 const ArtistsList: React.FC<ArtistsList> = ({ term }) => {
     const { artists, fetchArtistsByTerm } = useArtists();
 
-    if (artists[term].length == 0) fetchArtistsByTerm(term);
+    useEffect(() => {
+        if (!artists[term] || artists[term].data.length === 0) {
+            fetchArtistsByTerm(term);
+        }
+    }, [term, fetchArtistsByTerm]);
 
     return (
         <ScrollArea className="h-full w-full">
             <ul className="p-4">
-                {artists[term]
-                    ? artists[term].map((artist, index) => (
+                {artists[term].data && !artists[term].loading
+                    ? artists[term].data.map((artist, index) => (
                           <li key={index}>
                               <ArtistItem artist={artist} index={index + 1} />
                               {index !== 49 && <Separator />}
