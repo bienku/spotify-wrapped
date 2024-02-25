@@ -9,8 +9,8 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-    { id: 1, text: 'Music' },
-    { id: 2, text: 'Artists' },
+    { id: 1, text: 'Music', route: '/music' },
+    { id: 2, text: 'Artists', route: '/artists' },
 ];
 
 const Nav = () => {
@@ -32,7 +32,7 @@ const Nav = () => {
                 {navItems.map((item) => (
                     <li key={item.id}>
                         <Button variant="ghost" asChild>
-                            <Link href="/">{item.text}</Link>
+                            <Link href={item.route}>{item.text}</Link>
                         </Button>
                     </li>
                 ))}
