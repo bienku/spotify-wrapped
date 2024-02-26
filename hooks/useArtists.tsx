@@ -4,7 +4,7 @@ import { useState, useEffect, createContext, useContext } from 'react';
 import { useSession } from 'next-auth/react';
 
 interface ArtistData {
-    data: any[];
+    data: Artist[];
     loading: boolean;
     error: string | null;
 }

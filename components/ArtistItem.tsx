@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
 interface ArtistItem {
-    artist: any;
+    artist: Artist;
     index: number;
 }
 
@@ -20,8 +20,8 @@ const ArtistItem: React.FC<ArtistItem> = ({ artist, index }) => {
             <Image
                 src={artist.images[1].url}
                 alt={`${artist.name} profile picture`}
-                height={artist.images[1].height}
-                width={artist.images[1].width}
+                height={artist.images[1].height as number}
+                width={artist.images[1].width as number}
                 className="w-12 h-12 object-cover rounded-[5px]"
             />
 
