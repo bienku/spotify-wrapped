@@ -1,5 +1,6 @@
 'use client';
 
+import { MusicProvider } from '@/hooks/useMusic';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 interface Tab {
@@ -15,6 +16,7 @@ const TABS: Tab[] = [
 
 export default function Page() {
     return (
+        <MusicProvider>
             <Tabs defaultValue="short_term" className="w-5/6 sm:w-2/3 h-full max-w-[975px]">
                 <TabsList className="grid w-full h-max grid-cols-3">
                     {TABS.map(({ term, label }) => (
@@ -30,5 +32,6 @@ export default function Page() {
                     </TabsContent>
                 ))}
             </Tabs>
+        </MusicProvider>
     );
 }
