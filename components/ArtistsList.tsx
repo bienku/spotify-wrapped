@@ -6,7 +6,7 @@ import { ScrollArea } from '@radix-ui/react-scroll-area';
 import { useArtists } from '@/hooks/useArtists';
 import ArtistItem from '@/components/ArtistItem';
 import { Separator } from '@/components/ui/separator';
-import ArtistItemSkeleton from '@/components/ArtistItemSkeleton';
+import ItemSkeleton from '@/components/ItemSkeleton';
 import { Skeleton } from '@/components/ui/skeleton';
 
 interface ArtistsList {
@@ -34,7 +34,7 @@ const ArtistsList: React.FC<ArtistsList> = ({ term }) => {
                       ))
                     : Array.from({ length: 5 }, (_, index) => (
                           <li key={index}>
-                              <ArtistItemSkeleton key={index} />
+                              <ItemSkeleton key={index} />
                               {index !== 4 && <Skeleton className="h-[1px] w-full shrink-0" />}
                           </li>
                       ))}
