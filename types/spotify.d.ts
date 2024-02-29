@@ -1,6 +1,11 @@
 type Type = 'artists' | 'tracks';
 type Term = 'short_term' | 'medium_term' | 'long_term';
 
+interface Tab {
+    term: Term;
+    label: string;
+}
+
 interface Artist {
     external_urls: {
         spotify: string;
