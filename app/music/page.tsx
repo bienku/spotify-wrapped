@@ -2,6 +2,7 @@
 
 import { MusicProvider } from '@/hooks/useMusic';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import MusicList from '@/components/MusicList';
 import { TABS } from '@/constants';
 
 export default function Page() {
@@ -18,7 +19,7 @@ export default function Page() {
 
                 {TABS.map(({ term }) => (
                     <TabsContent key={term} value={term} className="h-[calc(100%-60px)] overflow-y-auto border rounded-md">
-                        {/*  */}
+                        <MusicList term={term} />
                     </TabsContent>
                 ))}
             </Tabs>
