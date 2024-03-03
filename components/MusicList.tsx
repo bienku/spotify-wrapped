@@ -3,8 +3,9 @@
 import { useEffect } from 'react';
 import { ScrollArea } from '@radix-ui/react-scroll-area';
 
-import { Separator } from '@/components/ui/separator';
 import ItemSkeleton from '@/components/ItemSkeleton';
+import MusicItem from '@/components/MusicItem';
+import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useMusic } from '@/hooks/useMusic';
 
@@ -27,7 +28,7 @@ const MusicList: React.FC<MusicList> = ({ term }) => {
                 {music[term].data && !music[term].loading
                     ? music[term].data.map((song, index) => (
                           <li key={index}>
-                              <p>{song.name}</p>
+                              <MusicItem song={song} index={index + 1} />
                               {index !== 49 && <Separator />}
                           </li>
                       ))
