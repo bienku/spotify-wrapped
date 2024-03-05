@@ -3,32 +3,32 @@
 import { useEffect } from 'react';
 import { ScrollArea } from '@radix-ui/react-scroll-area';
 
-import { useArtists } from '@/hooks/useArtists';
-import ArtistItem from '@/components/ArtistItem';
-import { Separator } from '@/components/ui/separator';
 import ItemSkeleton from '@/components/ItemSkeleton';
+import MusicItem from '@/components/MusicItem';
+import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useMusic } from '@/hooks/useMusic';
 
-interface ArtistsList {
+interface MusicList {
     term: Term;
 }
 
-const ArtistsList: React.FC<ArtistsList> = ({ term }) => {
-    const { artists, fetchArtistsByTerm } = useArtists();
+const MusicList: React.FC<MusicList> = ({ term }) => {
+    const { music, fetchMusicByTerm } = useMusic();
 
     useEffect(() => {
-        if (!artists[term] || artists[term].data.length === 0) {
-            fetchArtistsByTerm(term);
+        if (!music[term] || music[term].data.length === 0) {
+            fetchMusicByTerm(term);
         }
-    }, [term, fetchArtistsByTerm]);
+    }, [term, fetchMusicByTerm]);
 
     return (
         <ScrollArea className="h-full w-full">
             <ul className="p-4">
-                {artists[term].data && !artists[term].loading
-                    ? artists[term].data.map((artist, index) => (
+                {music[term].data && !music[term].loading
+                    ? music[term].data.map((song, index) => (
                           <li key={index}>
-                              <ArtistItem artist={artist} index={index + 1} />
+                              <MusicItem song={song} index={index + 1} />
                               {index !== 49 && <Separator />}
                           </li>
                       ))
@@ -43,4 +43,4 @@ const ArtistsList: React.FC<ArtistsList> = ({ term }) => {
     );
 };
 
-export default ArtistsList;
+export default MusicList;

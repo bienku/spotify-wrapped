@@ -1,6 +1,6 @@
 import { Skeleton } from '@/components/ui/skeleton';
 
-const ArtistItemSkeleton = () => {
+const ItemSkeleton = () => {
     return (
         <div className="flex items-center text-sm space-x-4 py-2">
             <Skeleton className="text-xs w-4 h-4 mx-1" />
@@ -14,4 +14,4 @@ const ArtistItemSkeleton = () => {
     );
 };
 
-export default ArtistItemSkeleton;
+export default ItemSkeleton;
