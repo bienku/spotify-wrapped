@@ -34,6 +34,7 @@ export const ArtistsProvider = ({ children }: { children: React.ReactNode }) => 
     });
 
     useEffect(() => {
+        if (artists[term].data.length > 0) return;
         fetchArtists('artists', term);
     }, [session, term]);
 

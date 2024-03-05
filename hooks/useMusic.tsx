@@ -34,6 +34,7 @@ export const MusicProvider = ({ children }: { children: React.ReactNode }) => {
     });
 
     useEffect(() => {
+        if (music[term].data.length > 0) return;
         fetchMusic('tracks', term);
     }, [session, term]);
 

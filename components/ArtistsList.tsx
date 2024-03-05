@@ -25,14 +25,15 @@ const ArtistsList: React.FC<ArtistsList> = ({ term }) => {
     return (
         <ScrollArea className="h-full w-full">
             <ul className="p-4">
-                {artists[term].data && !artists[term].loading
+                {artists[term].data.length > 0 && !artists[term].loading
                     ? artists[term].data.map((artist, index) => (
                           <li key={index}>
                               <ArtistItem artist={artist} index={index + 1} />
                               {index !== 49 && <Separator />}
                           </li>
                       ))
-                    : Array.from({ length: 5 }, (_, index) => (
+                    : artists[term].loading &&
+                      Array.from({ length: 5 }, (_, index) => (
                           <li key={index}>
                               <ItemSkeleton key={index} />
                               {index !== 4 && <Skeleton className="h-[1px] w-full shrink-0" />}
