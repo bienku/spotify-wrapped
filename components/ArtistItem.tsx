@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
@@ -17,13 +18,15 @@ const ArtistItem: React.FC<ArtistItem> = ({ artist, index }) => {
             })}
         >
             <p className="text-xs w-6 text-center">{index}</p>
-            <Image
-                src={artist.images[1].url}
-                alt={`${artist.name} profile picture`}
-                height={artist.images[1].height as number}
-                width={artist.images[1].width as number}
-                className="w-12 h-12 object-cover rounded-[5px]"
-            />
+            <Link href={artist.external_urls.spotify} target="_blank">
+                <Image
+                    src={artist.images[1].url}
+                    alt={`${artist.name} profile picture`}
+                    height={artist.images[1].height as number}
+                    width={artist.images[1].width as number}
+                    className="w-12 h-12 object-cover rounded-[5px]"
+                />
+            </Link>
 
             <div className="flex flex-col justify-between">
                 <p className="mb-1">{artist.name}</p>
