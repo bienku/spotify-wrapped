@@ -68,8 +68,10 @@ const Nav = () => {
 
                 {navItems.map((item) => (
                     <li key={item.id}>
-                        <Button asChild variant="ghost" className="text-white w-full justify-start">
-                            <Link href="/">{item.text}</Link>
+                        <Button asChild variant="ghost" className="text-white w-full justify-start" onClick={handleNav}>
+                            <Link href={item.route} className={cn({ 'bg-white text-black': item.route === pathname })}>
+                                {item.text}
+                            </Link>
                         </Button>
                     </li>
                 ))}
