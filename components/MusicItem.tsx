@@ -14,13 +14,13 @@ const MusicItem: React.FC<ArtistItem> = ({ song, index }) => {
 
     return (
         <div
-            className={cn('flex items-center text-sm space-x-4 py-2 hover:bg-gray-100 transition-colors', {
+            className={cn('flex items-center text-sm space-x-3 sm:space-x-4 py-2 hover:bg-gray-100 transition-colors', {
                 'rounded-t-sm': index === 1,
                 'rounded-b-sm': index === 50,
             })}
         >
             <p className="text-xs w-6 text-center flex-shrink-0">{index}</p>
-            <Link href={song.external_urls.spotify} target="_blank">
+            <Link href={song.external_urls.spotify} target="_blank" className="flex-shrink-0">
                 <Image
                     src={song.album.images[1].url}
                     alt={`${song.name} profile picture`}
@@ -38,12 +38,13 @@ const MusicItem: React.FC<ArtistItem> = ({ song, index }) => {
                             variant="outline"
                             className="max-w-max text-gray-500 font-light text-xs uppercase h-full text-[10px] leading-3"
                         >
-                            Explicit
+                            <span className="md:hidden">E</span>
+                            <span className="hidden md:inline">Explicit</span>
                         </Badge>
                     )}
                 </div>
 
-                <p className="text-gray-600 line-clamp-1">{song.artists.map((artist) => artist.name).join(', ')}</p>
+                <p className="text-gray-600 line-clamp-1 text-xs">{song.artists.map((artist) => artist.name).join(', ')}</p>
             </div>
         </div>
     );
