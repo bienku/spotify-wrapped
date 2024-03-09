@@ -8,7 +8,7 @@ import { TABS } from '@/constants';
 export default function Page() {
     return (
         <MusicProvider>
-            <Tabs defaultValue="short_term" className="w-5/6 sm:w-2/3 h-full max-w-[975px]">
+            <Tabs defaultValue="short_term" className="w-5/6 sm:w-2/3 h-full max-w-[853px]">
                 <TabsList className="grid w-full h-max grid-cols-3">
                     {TABS.map(({ term, label }) => (
                         <TabsTrigger key={term} value={term} className="text-xs sm:text-sm">
