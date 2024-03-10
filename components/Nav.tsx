@@ -3,18 +3,22 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
+import { usePathname } from 'next/navigation';
 
 import BurgerButton from '@/components/BurgerButton';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-    { id: 1, text: 'Music', route: '/music' },
-    { id: 2, text: 'Artists', route: '/artists' },
+    { id: 1, text: 'Home', route: '/' },
+    { id: 2, text: 'Music', route: '/music' },
+    { id: 3, text: 'Artists', route: '/artists' },
 ];
 
 const Nav = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const pathname = usePathname();
+
     const handleNav = () => setIsDrawerOpen((prevState) => !prevState);
 
     return (
@@ -68,8 +72,13 @@ const Nav = () => {
 
                 {navItems.map((item) => (
                     <li key={item.id}>
-                        <Button asChild variant="ghost" className="text-white w-full justify-start" onClick={handleNav}>
-                            <Link href={item.route} className={cn({ 'bg-white text-black': item.route === pathname })}>
+                        <Button asChild variant="ghost" className="w-full justify-start" onClick={handleNav}>
+                            <Link
+                                href={item.route}
+                                className={cn('transition-colors bg-black text-white', {
+                                    'bg-white text-black': item.route === pathname,
+                                })}
+                            >
                                 {item.text}
                             </Link>
                         </Button>
