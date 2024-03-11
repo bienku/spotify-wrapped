@@ -2,12 +2,14 @@
 
 import { useEffect } from 'react';
 import { ScrollArea } from '@radix-ui/react-scroll-area';
+import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 
 import { useArtists } from '@/hooks/useArtists';
 import ArtistItem from '@/components/ArtistItem';
 import { Separator } from '@/components/ui/separator';
 import ItemSkeleton from '@/components/ItemSkeleton';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 interface ArtistsList {
     term: Term;
@@ -21,6 +23,16 @@ const ArtistsList: React.FC<ArtistsList> = ({ term }) => {
             fetchArtistsByTerm(term);
         }
     }, [term, fetchArtistsByTerm]);
+
+    if (artists[term].error) {
+        return (
+            <Alert variant="destructive" className="w-4/5 mx-auto mt-8">
+                <ExclamationTriangleIcon className="h-4 w-4" />
+                <AlertTitle>Error</AlertTitle>
+                <AlertDescription>{artists[term].error}</AlertDescription>
+            </Alert>
+        );
+    }
 
     return (
         <ScrollArea className="h-full w-full">
