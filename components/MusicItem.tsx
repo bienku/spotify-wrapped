@@ -26,7 +26,7 @@ const MusicItem: React.FC<ArtistItem> = ({ song, index }) => {
                     alt={`${song.name} profile picture`}
                     height={song.album.images[1].height as number}
                     width={song.album.images[1].width as number}
-                    className="w-12 h-12 object-cover rounded-[5px]"
+                    className="size-12 object-cover rounded-[5px]"
                 />
             </Link>
 
