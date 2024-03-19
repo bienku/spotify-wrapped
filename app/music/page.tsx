@@ -1,5 +1,3 @@
-'use client';
-
 import { MusicProvider } from '@/hooks/useMusic';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import MusicList from '@/components/MusicList';
