@@ -2,6 +2,7 @@
 
 import { useState, useEffect, createContext, useContext } from 'react';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 interface ArtistData {
     data: Artist[];
@@ -26,6 +27,7 @@ const ArtistsContext = createContext<ArtistsContext | undefined>(undefined);
 
 export const ArtistsProvider = ({ children }: { children: React.ReactNode }) => {
     const { data: session } = useSession();
+    const router = useRouter();
     const [term, setTerm] = useState<Term>('short_term');
     const [artists, setArtists] = useState<Artists>({
         short_term: initialState,
@@ -44,9 +46,7 @@ export const ArtistsProvider = ({ children }: { children: React.ReactNode }) => 
         setArtists((prev) => ({ ...prev, [term]: { ...prev[term], loading: true } }));
 
         if (!session || !session.accessToken) {
-            const error = 'Session or access token is missing';
-            setArtists((prev) => ({ ...prev, [term]: { ...prev[term], loading: false, error } }));
-            return;
+            return router.push('/api/auth/signin');
         }
 
         try {

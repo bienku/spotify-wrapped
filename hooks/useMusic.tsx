@@ -2,6 +2,7 @@
 
 import { useState, useEffect, createContext, useContext } from 'react';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 interface MusicData {
     data: Track[];
@@ -26,6 +27,7 @@ const MusicContext = createContext<MusicContext | undefined>(undefined);
 
 export const MusicProvider = ({ children }: { children: React.ReactNode }) => {
     const { data: session } = useSession();
+    const router = useRouter();
     const [term, setTerm] = useState<Term>('short_term');
     const [music, setMusic] = useState<Music>({
         short_term: initialState,
@@ -44,9 +46,7 @@ export const MusicProvider = ({ children }: { children: React.ReactNode }) => {
         setMusic((prev) => ({ ...prev, [term]: { ...prev[term], loading: true } }));
 
         if (!session || !session.accessToken) {
-            const error = 'Session or access token is missing';
-            setMusic((prev) => ({ ...prev, [term]: { ...prev[term], loading: false, error } }));
-            return;
+            return router.push('/api/auth/signin');
         }
 
         try {
