@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
 import AuthProvider from '@/providers/AuthProvider';
 import Header from '@/components/Header';
+import ThemeProvider from '@/providers/ThemeProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,10 +18,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="en">
             <body className={inter.className}>
                 <AuthProvider>
-                    <div className="max-h-screen h-dvh xs:p-2 md:p-3 overflow-hidden">
-                        <Header />
-                        <main className="w-full h-4/5 flex justify-center mt-4">{children}</main>
-                    </div>
+                    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+                        <div className="max-h-screen h-dvh xs:p-2 md:p-3 overflow-hidden">
+                            <Header />
+                            <main className="w-full h-4/5 flex justify-center mt-4">{children}</main>
+                        </div>
+                    </ThemeProvider>
                 </AuthProvider>
             </body>
         </html>

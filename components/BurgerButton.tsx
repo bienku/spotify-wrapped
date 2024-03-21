@@ -17,13 +17,13 @@ const BurgerButton: React.FC<BurgerButton> = ({ isDrawerOpen, handleNav }) => (
             )}
         >
             <div
-                className={cn('bg-black h-[2px] w-7 transform transition-all duration-500', {
+                className={cn('bg-foreground h-[2px] w-7 transform transition-all duration-500', {
                     'rotate-45 -translate-x-1 -translate-y-1': isDrawerOpen,
                 })}
             ></div>
-            <div className="bg-black h-[2px] w-7 rounded transform transition-all duration-500"></div>
+            <div className="bg-foreground h-[2px] w-7 rounded transform transition-all duration-500"></div>
             <div
-                className={cn('bg-black h-[2px] w-7 transform transition-all duration-500', {
+                className={cn('bg-foreground h-[2px] w-7 transform transition-all duration-500', {
                     '-rotate-45 -translate-x-1 translate-y-1': isDrawerOpen,
                 })}
             ></div>

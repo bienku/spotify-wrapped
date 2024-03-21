@@ -12,7 +12,7 @@ interface ArtistItem {
 const ArtistItem: React.FC<ArtistItem> = ({ artist, index }) => {
     return (
         <div
-            className={cn('flex items-center text-sm space-x-4 py-2 hover:bg-gray-100 transition-colors', {
+            className={cn('flex items-center text-sm space-x-4 py-2 hover:bg-muted transition-colors', {
                 'rounded-t-sm': index === 1,
                 'rounded-b-sm': index === 50,
             })}

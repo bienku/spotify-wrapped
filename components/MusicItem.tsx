@@ -14,7 +14,7 @@ const MusicItem: React.FC<ArtistItem> = ({ song, index }) => {
 
     return (
         <div
-            className={cn('flex items-center text-sm space-x-3 sm:space-x-4 py-2 hover:bg-gray-100 transition-colors', {
+            className={cn('flex items-center text-sm space-x-3 sm:space-x-4 py-2 hover:bg-muted transition-colors', {
                 'rounded-t-sm': index === 1,
                 'rounded-b-sm': index === 50,
             })}
@@ -44,7 +44,9 @@ const MusicItem: React.FC<ArtistItem> = ({ song, index }) => {
                     )}
                 </div>
 
-                <p className="text-gray-600 line-clamp-1 text-xs">{song.artists.map((artist) => artist.name).join(', ')}</p>
+                <p className="text-gray-600 dark:text-gray-500 line-clamp-1 text-xs">
+                    {song.artists.map((artist) => artist.name).join(', ')}
+                </p>
             </div>
         </div>
     );
