@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 
 import BurgerButton from '@/components/BurgerButton';
 import { Button } from '@/components/ui/button';
-import ThemeToggle from '@/components/ThemeToggle';
+import ThemeToggler from '@/components/ThemeToggler';
 import { cn } from '@/lib/utils';
 
 const navItems = [
@@ -42,7 +42,7 @@ const Nav = () => {
                     </li>
                 ))}
                 <li className="ml-6">
-                    <ThemeToggle />
+                    <ThemeToggler />
                 </li>
 
                 <li>
@@ -90,7 +90,7 @@ const Nav = () => {
                     </li>
                 ))}
                 <li>
-                    <ThemeToggle className="text-white w-full justify-start" />
+                    <ThemeToggler className="text-white w-full justify-start" />
                 </li>
                 <li>
                     <Button variant="ghost" className="text-white w-full justify-start" onClick={() => signOut()}>
