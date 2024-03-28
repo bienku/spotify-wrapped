@@ -8,7 +8,14 @@ interface Token extends JWT {
     accessTokenExpires?: number;
 }
 
-const scopes = ['user-read-email', 'playlist-read-private', 'playlist-read-collaborative', 'user-top-read'].join(',');
+const scopes = [
+    'user-read-email',
+    'playlist-read-private',
+    'playlist-read-collaborative',
+    'user-top-read',
+    'playlist-modify-public',
+    'playlist-modify-private',
+].join(',');
 
 const params = {
     scope: scopes,
