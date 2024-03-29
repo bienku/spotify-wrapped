@@ -1,8 +1,6 @@
 'use client';
 import { Button } from '@/components/ui/button';
-
-const CreatePlaylistButton = () => {
-    const handleCreatePlaylist = async () => {};
+const CreatePlaylistButton = ({ term }: { term: Term }) => {
 
     return (
         <Button
