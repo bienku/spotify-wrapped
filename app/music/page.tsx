@@ -1,7 +1,7 @@
 import { MusicProvider } from '@/hooks/useMusic';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import MusicList from '@/components/MusicList';
-import { Button } from '@/components/ui/button';
+import CreatePlaylistButton from '@/components/CreatePlaylistButton';
 import { TABS } from '@/constants';
 
 export default function Page() {
@@ -14,12 +14,7 @@ export default function Page() {
                             {label}
                         </TabsTrigger>
                     ))}
-                    <Button
-                        size="icon"
-                        className="h-auto w-auto whitespace-nowrap rounded-md px-3 py-1 ring-offset-background transition-all hover:scale-125"
-                    >
-                        +
-                    </Button>
+                    <CreatePlaylistButton />
                 </TabsList>
 
                 {TABS.map(({ term }) => (
