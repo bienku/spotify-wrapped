@@ -60,9 +60,13 @@ const CreatePlaylistButton = ({ term }: { term: Term }) => {
     };
 
     const handleCreatePlaylist = async () => {
-        const userId = await getUserId();
-        const playlistId = await createPlaylist(userId);
-        await addTracks(playlistId);
+        try {
+            const userId = await getUserId();
+            const playlistId = await createPlaylist(userId);
+            await addTracks(playlistId);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (
