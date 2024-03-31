@@ -4,10 +4,12 @@ import { useSession } from 'next-auth/react';
 
 import { Button } from '@/components/ui/button';
 import { useMusic } from '@/hooks/useMusic';
+import { useToast } from '@/components/ui/use-toast';
 
 const CreatePlaylistButton = ({ term }: { term: Term }) => {
     const { data: session } = useSession();
     const { music } = useMusic();
+    const { toast } = useToast();
 
     const getUserId = async () => {
         if (!session) throw new Error('No session found');
@@ -64,8 +66,17 @@ const CreatePlaylistButton = ({ term }: { term: Term }) => {
             const userId = await getUserId();
             const playlistId = await createPlaylist(userId);
             await addTracks(playlistId);
+
+            toast({
+                title: 'Playlist Created!',
+                description: 'Your playlist has been created successfully.',
+            });
         } catch (error) {
-            console.error(error);
+            toast({
+                variant: 'destructive',
+                title: 'Uh oh! Something went wrong.',
+                description: 'There was a problem with your request.',
+            });
         }
     };
 

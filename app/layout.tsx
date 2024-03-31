@@ -5,6 +5,7 @@ import '@/styles/globals.css';
 import AuthProvider from '@/providers/AuthProvider';
 import Header from '@/components/Header';
 import ThemeProvider from '@/providers/ThemeProvider';
+import { Toaster } from '@/components/ui/toaster';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             <Header />
                             <main className="w-full h-4/5 flex justify-center mt-4">{children}</main>
                         </div>
+                        <Toaster />
                     </ThemeProvider>
                 </AuthProvider>
             </body>
