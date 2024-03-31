@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import { useMusic } from '@/hooks/useMusic';
 import { useToast } from '@/components/ui/use-toast';
+import { ToastAction } from '@/components/ui/toast';
 
 const CreatePlaylistButton = ({ term }: { term: Term }) => {
     const { data: session } = useSession();
@@ -45,6 +46,17 @@ const CreatePlaylistButton = ({ term }: { term: Term }) => {
         return data.id;
     };
 
+    const unfollowPlaylist = async (playlistId: string) => {
+        if (!session) throw new Error('No session found');
+
+        await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/followers`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${session.accessToken}`,
+            },
+        });
+    };
+
     const addTracks = async (playlistId: string) => {
         if (!session) throw new Error('No session found');
 
@@ -70,6 +82,11 @@ const CreatePlaylistButton = ({ term }: { term: Term }) => {
             toast({
                 title: 'Playlist Created!',
                 description: 'Your playlist has been created successfully.',
+                action: (
+                    <ToastAction onClick={() => unfollowPlaylist(playlistId)} altText="Undo">
+                        Undo
+                    </ToastAction>
+                ),
             });
         } catch (error) {
             toast({
