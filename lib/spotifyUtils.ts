@@ -26,6 +26,11 @@ const makeApiRequest = async (url: string, session: Session | null, method: Meth
     }
 };
 
+export const getTopTracksOrArtists = async (session: Session | null, type: Type, term: Term, limit = 50) => {
+    const url = `${API_BASE_URL}/me/top/${type}?time_range=${term}&limit=${limit}`;
+    return await makeApiRequest(url, session);
+};
+
 export const getUserId = async (session: Session | null) => {
     const url = `${API_BASE_URL}/me`;
     const data = await makeApiRequest(url, session);

@@ -3,6 +3,7 @@
 import { useState, useEffect, createContext, useContext } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { getTopTracksOrArtists } from '@/lib/spotifyUtils';
 
 interface MusicData {
     data: Track[];
@@ -37,12 +38,12 @@ export const MusicProvider = ({ children }: { children: React.ReactNode }) => {
 
     useEffect(() => {
         if (music[term].data.length > 0) return;
-        fetchMusic('tracks', term);
+        fetchMusic();
     }, [session, term]);
 
     const fetchMusicByTerm = (newTerm: Term) => setTerm(newTerm);
 
-    const fetchMusic = async (type: Type, term: Term, limit = 50) => {
+    const fetchMusic = async () => {
         setMusic((prev) => ({ ...prev, [term]: { ...prev[term], loading: true } }));
 
         if (!session || !session.accessToken) {
@@ -50,17 +51,7 @@ export const MusicProvider = ({ children }: { children: React.ReactNode }) => {
         }
 
         try {
-            const response = await fetch(`https://api.spotify.com/v1/me/top/${type}?time_range=${term}&limit=${limit}`, {
-                headers: {
-                    Authorization: `Bearer ${session.accessToken}`,
-                },
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const data = await response.json();
+            const data = await getTopTracksOrArtists(session, 'tracks', term);
             setMusic((prev) => ({ ...prev, [term]: { data: data.items, loading: false, error: null } }));
         } catch (error) {
             console.error(error);
