@@ -1,4 +1,11 @@
 import NextAuth, { DefaultSession } from 'next-auth';
+import { JWT } from 'next-auth/jwt';
+
+interface Token extends JWT {
+    accessToken?: string;
+    refreshToken?: string;
+    accessTokenExpires?: number;
+}
 
 declare module 'next-auth' {
     /**
