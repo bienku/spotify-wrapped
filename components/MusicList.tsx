@@ -15,6 +15,9 @@ interface MusicList {
     term: Term;
 }
 
+const LAST_MUSIC_INDEX = 49;
+const LAST_SKELETON_INDEX = 4;
+
 const MusicList: React.FC<MusicList> = ({ term }) => {
     const { music, fetchMusicByTerm } = useMusic();
 
@@ -39,16 +42,16 @@ const MusicList: React.FC<MusicList> = ({ term }) => {
             <ul className="p-4">
                 {music[term].data.length > 0 && !music[term].loading
                     ? music[term].data.map((song, index) => (
-                          <li key={index}>
+                          <li key={song.id}>
                               <MusicItem song={song} index={index + 1} />
-                              {index !== 49 && <Separator />}
+                              {index !== LAST_MUSIC_INDEX && <Separator />}
                           </li>
                       ))
                     : music[term].loading &&
                       Array.from({ length: 5 }, (_, index) => (
                           <li key={index}>
                               <ItemSkeleton key={index} />
-                              {index !== 4 && <Skeleton className="h-[1px] w-full shrink-0" />}
+                              {index !== LAST_SKELETON_INDEX && <Skeleton className="h-[1px] w-full shrink-0" />}
                           </li>
                       ))}
             </ul>
