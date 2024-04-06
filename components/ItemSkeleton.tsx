@@ -2,14 +2,16 @@ import { useState, useEffect } from 'react';
 
 import { Skeleton } from '@/components/ui/skeleton';
 
+const WIDTHS = [3.5, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const getRandomWidth = (widths: number[]) => widths[Math.floor(Math.random() * widths.length)];
+
 const ItemSkeleton = () => {
-    const widths = [3.5, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     const [randomWidth1, setRandomWidth1] = useState<number>(0);
     const [randomWidth2, setRandomWidth2] = useState<number>(0);
 
     useEffect(() => {
-        setRandomWidth1(widths[Math.floor(Math.random() * widths.length)]);
-        setRandomWidth2(widths[Math.floor(Math.random() * widths.length)]);
+        setRandomWidth1(getRandomWidth(WIDTHS));
+        setRandomWidth2(getRandomWidth(WIDTHS));
     }, []);
 
     return (
