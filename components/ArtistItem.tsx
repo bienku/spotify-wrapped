@@ -9,21 +9,29 @@ interface ArtistItem {
     index: number;
 }
 
+const FIRST_INDEX = 1;
+const LAST_INDEX = 50;
+
 const ArtistItem: React.FC<ArtistItem> = ({ artist, index }) => {
+    const artistUrl = artist.images[1]?.url || '';
+    const artistHeight = artist.images[1]?.height || 0;
+    const artistWidth = artist.images[1]?.width || 0;
+    const artistGenre = artist.genres[0] || 'Unknown genre';
+
     return (
         <div
             className={cn('flex items-center text-sm space-x-4 py-2 hover:bg-muted transition-colors', {
-                'rounded-t-sm': index === 1,
-                'rounded-b-sm': index === 50,
+                'rounded-t-sm': index === FIRST_INDEX,
+                'rounded-b-sm': index === LAST_INDEX,
             })}
         >
             <p className="text-xs w-6 text-center">{index}</p>
             <Link href={artist.external_urls.spotify} target="_blank">
                 <Image
-                    src={artist.images[1].url}
+                    src={artistUrl}
                     alt={`${artist.name} profile picture`}
-                    height={artist.images[1].height as number}
-                    width={artist.images[1].width as number}
+                    height={artistHeight}
+                    width={artistWidth}
                     className="size-12 object-cover rounded-[5px]"
                 />
             </Link>
@@ -31,7 +39,7 @@ const ArtistItem: React.FC<ArtistItem> = ({ artist, index }) => {
             <div className="flex flex-col justify-between">
                 <p className="mb-1">{artist.name}</p>
                 <Badge variant="outline" className="max-w-max text-gray-400 font-light text-xs">
-                    {artist.genres[0]}
+                    {artistGenre}
                 </Badge>
             </div>
         </div>
