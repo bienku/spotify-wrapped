@@ -17,6 +17,7 @@ interface MusicList {
 
 const LAST_MUSIC_INDEX = 49;
 const LAST_SKELETON_INDEX = 4;
+const ANIMATION_DELAY = 0.055;
 
 const MusicList: React.FC<MusicList> = ({ term }) => {
     const { music, fetchMusicByTerm } = useMusic();
@@ -42,7 +43,11 @@ const MusicList: React.FC<MusicList> = ({ term }) => {
             <ul className="p-4">
                 {music[term].data.length > 0 && !music[term].loading
                     ? music[term].data.map((song, index) => (
-                          <li key={song.id}>
+                          <li
+                              key={song.id}
+                              className="opacity-0 animate-slide-in"
+                              style={{ animationDelay: `${index * ANIMATION_DELAY}s` }}
+                          >
                               <MusicItem song={song} index={index + 1} />
                               {index !== LAST_MUSIC_INDEX && <Separator />}
                           </li>

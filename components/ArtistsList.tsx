@@ -17,6 +17,7 @@ interface ArtistsList {
 
 const LAST_ARTIST_INDEX = 49;
 const LAST_SKELETON_INDEX = 4;
+const ANIMATION_DELAY = 0.055;
 
 const ArtistsList: React.FC<ArtistsList> = ({ term }) => {
     const { artists, fetchArtistsByTerm } = useArtists();
@@ -42,7 +43,11 @@ const ArtistsList: React.FC<ArtistsList> = ({ term }) => {
             <ul className="p-4">
                 {artists[term].data.length > 0 && !artists[term].loading
                     ? artists[term].data.map((artist, index) => (
-                          <li key={artist.id}>
+                          <li
+                              key={artist.id}
+                              className="opacity-0 animate-slide-in"
+                              style={{ animationDelay: `${index * ANIMATION_DELAY}s` }}
+                          >
                               <ArtistItem artist={artist} index={index + 1} />
                               {index !== LAST_ARTIST_INDEX && <Separator />}
                           </li>
