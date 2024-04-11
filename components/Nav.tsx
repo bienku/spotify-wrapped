@@ -9,12 +9,7 @@ import BurgerButton from '@/components/BurgerButton';
 import { Button } from '@/components/ui/button';
 import ThemeToggler from '@/components/ThemeToggler';
 import { cn } from '@/lib/utils';
-
-const navItems = [
-    { id: 1, text: 'Home', route: '/' },
-    { id: 2, text: 'Music', route: '/music' },
-    { id: 3, text: 'Artists', route: '/artists' },
-];
+import { ROUTES } from '@/constants';
 
 const Nav = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -34,7 +29,7 @@ const Nav = () => {
                     'after:absolute after:-left-5 after:top-0 after:w-5 after:h-5 after:rounded-tr-[10px] after:shadow-[5px_-5px_0_0_#fff] dark:after:shadow-[5px_-5px_0_0_#0c0a09]',
                 )}
             >
-                {navItems.map((item) => (
+                {ROUTES.map((item) => (
                     <li key={item.id}>
                         <Button variant="ghost" asChild>
                             <Link href={item.route}>{item.text}</Link>
@@ -75,7 +70,7 @@ const Nav = () => {
             >
                 <h1 className="w-full text-3xl font-bold text-accent m-4">WRAPPED</h1>
 
-                {navItems.map((item) => (
+                {ROUTES.map((item) => (
                     <li key={item.id}>
                         <Button asChild variant="ghost" className="w-full justify-start" onClick={handleNav}>
                             <Link
