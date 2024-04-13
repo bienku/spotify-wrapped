@@ -48,12 +48,12 @@ const ArtistsList: React.FC<ArtistsList> = ({ term }) => {
                               className="opacity-0 animate-slide-in"
                               style={{ animationDelay: `${index * ANIMATION_DELAY}s` }}
                           >
-                              <ArtistItem artist={artist} index={index + 1} />
+                              <ArtistItem artist={artist} index={index} />
                               {index !== LAST_ARTIST_INDEX && <Separator />}
                           </li>
                       ))
                     : artists[term].loading &&
-                      Array.from({ length: 5 }, (_, index) => (
+                      Array.from({ length: LAST_SKELETON_INDEX + 1 }, (_, index) => (
                           <li key={index}>
                               <ItemSkeleton key={index} />
                               {index !== LAST_SKELETON_INDEX && <Skeleton className="h-[1px] w-full shrink-0" />}

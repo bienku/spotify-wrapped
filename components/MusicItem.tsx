@@ -9,8 +9,8 @@ interface ArtistItem {
     index: number;
 }
 
-const FIRST_INDEX = 1;
-const LAST_INDEX = 50;
+const FIRST_INDEX = 0;
+const LAST_INDEX = 49;
 
 const MusicItem: React.FC<ArtistItem> = ({ song, index }) => {
     const songExternalUrl = song.external_urls.spotify || '';
@@ -25,7 +25,7 @@ const MusicItem: React.FC<ArtistItem> = ({ song, index }) => {
                 'rounded-b-sm': index === LAST_INDEX,
             })}
         >
-            <p className="text-xs w-6 text-center flex-shrink-0">{index}</p>
+            <p className="text-xs w-6 text-center flex-shrink-0">{index + 1}</p>
             <Link href={songExternalUrl} target="_blank" className="flex-shrink-0">
                 <Image
                     src={songUrl}

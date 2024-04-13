@@ -9,8 +9,8 @@ interface ArtistItem {
     index: number;
 }
 
-const FIRST_INDEX = 1;
-const LAST_INDEX = 50;
+const FIRST_INDEX = 0;
+const LAST_INDEX = 49;
 
 const ArtistItem: React.FC<ArtistItem> = ({ artist, index }) => {
     const artistUrl = artist.images[1]?.url || '';
@@ -25,7 +25,7 @@ const ArtistItem: React.FC<ArtistItem> = ({ artist, index }) => {
                 'rounded-b-sm': index === LAST_INDEX,
             })}
         >
-            <p className="text-xs w-6 text-center">{index}</p>
+            <p className="text-xs w-6 text-center">{index + 1}</p>
             <Link href={artist.external_urls.spotify} target="_blank">
                 <Image
                     src={artistUrl}
