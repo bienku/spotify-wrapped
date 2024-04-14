@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 
+import GenreItem from '@/components/GenreItem';
 import { useArtists } from '@/hooks/useArtists';
 import { Separator } from '@/components/ui/separator';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -55,9 +56,7 @@ const GenresList = ({ term }: { term: Term }) => {
                               className="opacity-0 animate-slide-in"
                               style={{ animationDelay: `${index * ANIMATION_DELAY}s` }}
                           >
-                              <p>
-                                  {genre}: {count}
-                              </p>
+                              <GenreItem genre={genre} count={count} totalGenresAmount={totalGenresAmount} index={index} />
                               {index !== LAST_GENRE_INDEX && <Separator />}
                           </li>
                       ))
