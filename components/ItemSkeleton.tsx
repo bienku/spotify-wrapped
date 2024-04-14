@@ -27,4 +27,24 @@ const ItemSkeleton = () => {
     );
 };
 
+export const GenreSkeleton = () => {
+    const [randomWidth, setRandomWidth] = useState<number>(0);
+
+    useEffect(() => {
+        setRandomWidth(getRandomWidth(WIDTHS));
+    }, []);
+
+    return (
+        <div className="flex items-center text-sm space-x-4 py-3">
+            <Skeleton className="text-xs w-4 h-4 mx-1 bg-muted" />
+
+            <div className="grid grid-cols-3 justify-center flex-1">
+                <Skeleton style={{ width: `${randomWidth}rem` }} className="bg-muted" />
+                <Skeleton className="h-4 w-11 bg-muted justify-self-center" />
+                <Skeleton className="h-4 w-16 bg-muted justify-self-end" />
+            </div>
+        </div>
+    );
+};
+
 export default ItemSkeleton;

@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 
+import ItemSkeleton, { GenreSkeleton } from '@/components/ItemSkeleton';
 import GenreItem from '@/components/GenreItem';
 import { useArtists } from '@/hooks/useArtists';
 import { Separator } from '@/components/ui/separator';
+import { Skeleton } from '@/components/ui/skeleton';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 const LAST_GENRE_INDEX = 19;
+const LAST_SKELETON_INDEX = 4;
 const ANIMATION_DELAY = 0.055;
 
 const countOccurrences = (strings: string[]): Map<string, number> => {
@@ -60,7 +63,13 @@ const GenresList = ({ term }: { term: Term }) => {
                               {index !== LAST_GENRE_INDEX && <Separator />}
                           </li>
                       ))
-                    : artists[term].loading && <p>loading...</p>}
+                    : artists[term].loading &&
+                      Array.from({ length: LAST_SKELETON_INDEX + 1 }, (_, index) => (
+                          <li key={index}>
+                              <GenreSkeleton key={index} />
+                              {index !== LAST_SKELETON_INDEX && <Skeleton className="h-[1px] w-full shrink-0" />}
+                          </li>
+                      ))}
             </ul>
         </ScrollArea>
     );
