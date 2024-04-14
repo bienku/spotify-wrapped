@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 
-import ItemSkeleton, { GenreSkeleton } from '@/components/ItemSkeleton';
+import ItemSkeleton from '@/components/ItemSkeleton';
 import GenreItem from '@/components/GenreItem';
 import { useArtists } from '@/hooks/useArtists';
 import { Separator } from '@/components/ui/separator';
@@ -66,7 +66,7 @@ const GenresList = ({ term }: { term: Term }) => {
                     : artists[term].loading &&
                       Array.from({ length: LAST_SKELETON_INDEX + 1 }, (_, index) => (
                           <li key={index}>
-                              <GenreSkeleton key={index} />
+                              <ItemSkeleton isGenre={true} key={index} />
                               {index !== LAST_SKELETON_INDEX && <Skeleton className="h-[1px] w-full shrink-0" />}
                           </li>
                       ))}
