@@ -78,7 +78,6 @@ export const unfollowPlaylist = async (session: Session | null, playlistId: stri
 
 export const addTracks = async (session: Session | null, playlistId: string, uris: string[]) => {
     const url = `${API_BASE_URL}/playlists/${playlistId}/tracks`;
-    console.log('uris', uris);
 
     const body = { uris };
     await makeApiRequest(url, session, 'POST', body);

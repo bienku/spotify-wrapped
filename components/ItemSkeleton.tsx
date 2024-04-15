@@ -9,8 +9,15 @@ const useRandomWidth = () => {
     const [randomWidth, setRandomWidth] = useState(0);
 
     useEffect(() => {
-        const randomIndex = Math.floor(Math.random() * WIDTHS.length);
-        setRandomWidth(WIDTHS[randomIndex]);
+        const isMobile = typeof window !== 'undefined' && window.innerWidth <= 425;
+
+        let widths = WIDTHS;
+        if (isMobile) {
+            widths = WIDTHS.slice(0, 6);
+        }
+
+        const randomIndex = Math.floor(Math.random() * widths.length);
+        setRandomWidth(widths[randomIndex]);
     }, []);
 
     return randomWidth;
@@ -26,19 +33,19 @@ const ItemSkeleton = ({ isGenre = false }) => {
                 'py-3': isGenre,
             })}
         >
-            <Skeleton className="text-xs w-4 h-4 mx-1 bg-muted" />
-            {!isGenre && <Skeleton className="w-12 h-12 rounded-[5px] bg-muted" />}
+            <Skeleton className="text-xs w-4 h-4 mx-1 bg-muted flex-shrink-0" />
+            {!isGenre && <Skeleton className="w-12 h-12 rounded-[5px] bg-muted flex-shrink-0" />}
 
             {isGenre ? (
-                <div className="grid grid-cols-3 justify-center flex-1">
-                    <Skeleton style={{ width: `${randomWidth1}rem` }} className="bg-muted" />
+                <div className="grid grid-cols-3 gap-1 justify-center flex-1">
+                    <Skeleton style={{ width: `${randomWidth1 - 2}rem` }} className="bg-muted" />
                     <Skeleton className="h-4 w-11 bg-muted justify-self-center" />
                     <Skeleton className="h-4 w-16 bg-muted justify-self-end" />
                 </div>
             ) : (
                 <div className="flex flex-col">
-                    <Skeleton style={{ width: `${randomWidth1}rem` }} className={`h-4 mb-2 bg-muted`} />
-                    <Skeleton style={{ width: `${randomWidth2}rem` }} className={`h-4 bg-muted`} />
+                    <Skeleton style={{ width: `${randomWidth1}rem` }} className="h-4 mb-2 bg-muted" />
+                    <Skeleton style={{ width: `${randomWidth2}rem` }} className="h-4 bg-muted" />
                 </div>
             )}
         </div>
