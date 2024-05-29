@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
+<h1 align="center">Spotify Wrapped</h1>
+<p align="center">🎶 Elevate your music experience with this Spotify Wrapped-inspired app.</p>
+<p align="center"><img src="https://github.com/bienku/spotify-wrapped/assets/99097883/021f30cd-e0df-4778-94f3-676dda0ce700" alt="Main Screen"></p>
+<h2>⚙️ Installation</h2>
+<p>- Clone the repo</p>
+<pre><code>git clone https://github.com/bienku/spotify-wrapped.git</code></pre>
+<p>- Install dependencies</p>
+<pre><code>npm install
+# or
+yarn install
+# or
+pnpm install</code></pre>
+<p>- Create a <code>.env.local</code> file and fill it with the necessary environment variables (follow .env.example)</p>
+<pre><code>SPOTIFY_CLIENT_ID=
+SPOTIFY_CLIENT_SECRET=
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=</code></pre>
+<p>- Run the development server:</p>
+<pre><code>npm run dev
 # or
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+</code></pre>
+<p>🔗 The app will be available at <a href="http://localhost:3000">http://localhost:3000</a>.</p>
+<h2>💻 Tech Stack</h2>
+<ul>
+  <li>Next.js</li>
+  <li>TypeScript</li>
+  <li>Tailwind CSS</li>
+  <li>Radix UI</li>
+  <li>NextAuth.js</li>
+  <li>Spotify API</li>
+</ul>
+<h2>🌟 Features</h2>
+<ul>
+  <li>Server-side rendering for efficient performance using Next.js</li>
+  <li>Responsive and captivating design with Tailwind CSS</li>
+  <li>Reusable UI components with Radix UI</li>
+  <li>Secure user authentication with NextAuth.js</li>
+  <li>Spotify data integration for fetching user listening statistics</li>
+  <li>Displays most listened tracks, artists, and genres</li>
+</ul>
+<h2>🌐 Live Demo</h2>
+<p>Visit the live demo: <a href="https://spotify-clone-sable-zeta.vercel.app/">Spotify Wrapped Clone Demo</a></p>
+<h2>🤝 Contributing</h2>
+<p>Contributions are welcome! Follow these steps:</p>
+<ol>
+  <li>Fork the repository</li>
+  <li>Create a new branch</li>
+  <li>Make your changes and commit them</li>
+  <li>Push your changes to your forked repository</li>
+  <li>Submit a pull request</li>
+</ol>
+<h2>📄 License</h2>
+<p>This project is licensed under the MIT License. Feel free to modify and distribute the project as needed.</p>
+<hr>
+<p align="center">🙌 Thank you for checking out the Spotify Wrapped project! If you have any questions or need assistance, feel free to reach out.</p>
